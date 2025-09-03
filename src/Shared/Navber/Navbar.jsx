@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import headerPhoto from "./../../assets/Icon-8x.png";
 
 const Navbar = () => {
+  const {user} = useContext;
   const links = (
     <>
       <li>
@@ -62,11 +63,11 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link to='/register'>
-          <a className="btn mr-3">Register</a>
+        <Link className="mr-3 underline text-[#4167F0]" to='/register'>
+          Register
         </Link>
         <Link to='/signin'>
-          <a className="btn">Sign In</a>
+          <a className="btn ">Sign In</a>
         </Link>
       </div>
     </div>
