@@ -1,56 +1,15 @@
+import React from "react";
 import Lottie from "lottie-react";
-import React, { useContext } from "react";
 import registerLottieData from "../../assets/Lottie/register.json.json";
-import AuthContext from "../../Context/AuthContext/AuthContext";
-import { updateProfile } from "firebase/auth";
 import { Link } from "react-router-dom";
-const Register = () => {
-  const { createUser } = useContext(AuthContext);
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(name, email, password);
-
-    // ✅ Password validation: at least 6 chars, 1 uppercase, 1 number
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-    if (!passwordRegex.test(password)) {
-      alert(
-        "Password must be at least 6 characters long, contain one uppercase letter and one number."
-      );
-      return;
-    }
-
-    createUser(email, password)
-      .then((result) => {
-        console.log(result.user);
-
-        // ✅ If you want to save/display name, use updateProfile
-
-        updateProfile(result.user, {
-          displayName: name,
-        })
-          .then(() => {
-            console.log("Name updated:", name);
-          })
-          .catch((err) => {
-            console.error("Profile update failed:", err);
-          });
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
-
+const SignIn = () => {
   return (
     <div className="flex flex-col-reverse md:flex-row items-center mt-10 mb-10 justify-center min-h-screen px-4 py-10 bg-gray-100">
       {/* Form Section */}
       <div className="w-full max-w-md p-6 rounded-lg shadow-lg bg-white text-gray-800">
-        <p className="text-center font-medium">Register</p>
+        <p className="text-center font-medium">Welcome back!</p>
         <h2 className="mb-3 text-2xl md:text-3xl font-semibold text-center">
-          Start for free Today
+          Member Login
         </h2>
         <p className="text-center mb-2 text-sm md:text-base">
           Access to all features. No credit card required.
@@ -58,11 +17,11 @@ const Register = () => {
         <p className="text-sm text-center text-gray-600">
           Already have an account?
           <Link
-            to="/signin"
+            to='/register'
             rel="noopener noreferrer"
             className="focus:underline hover:underline text-violet-600"
           >
-            <span> Sign In</span>
+            <span> Register</span>
           </Link>
         </p>
 
@@ -92,22 +51,8 @@ const Register = () => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleRegister} className="space-y-6">
+        <form className="space-y-6">
           <div className="space-y-4">
-            {/* Full Name */}
-            <div className="space-y-2">
-              <label htmlFor="name" className="block text-sm">
-                Full Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="John Kabir"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600"
-              />
-            </div>
-
             {/* Email */}
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm">
@@ -163,4 +108,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignIn;
