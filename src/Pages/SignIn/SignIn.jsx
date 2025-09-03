@@ -1,8 +1,17 @@
 import React from "react";
 import Lottie from "lottie-react";
-import registerLottieData from "../../assets/Lottie/register.json.json";
+import signInLottieData from "../../assets/Lottie/login.json";
 import { Link } from "react-router-dom";
 const SignIn = () => {
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log( email, password );
+    
+        
+      };
   return (
     <div className="flex flex-col-reverse md:flex-row items-center mt-10 mb-10 justify-center min-h-screen px-4 py-10 bg-gray-100">
       {/* Form Section */}
@@ -51,7 +60,7 @@ const SignIn = () => {
         </div>
 
         {/* Form */}
-        <form className="space-y-6">
+        <form onSubmit={handleSignIn} className="space-y-6">
           <div className="space-y-4">
             {/* Email */}
             <div className="space-y-2">
@@ -100,7 +109,7 @@ const SignIn = () => {
       {/* Lottie Animation */}
       <div className="w-full md:w-1/2 flex justify-center items-center mb-8 md:mb-0">
         <Lottie
-          animationData={registerLottieData}
+          animationData={signInLottieData}
           className="max-w-xs md:max-w-md"
         />
       </div>
