@@ -1,8 +1,10 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useContext } from "react";
 import registerLottieData from "../../assets/Lottie/register.json.json";
-
+import AuthContext from "../../Context/AuthContext/AuthContext";
+import { updateProfile } from "firebase/auth";
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -10,6 +12,35 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, email, password);
+
+    // ✅ Password validation: at least 6 chars, 1 uppercase, 1 number
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      alert(
+        "Password must be at least 6 characters long, contain one uppercase letter and one number."
+      );
+      return;
+    }
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+
+        // ✅ If you want to save/display name, use updateProfile
+
+        updateProfile(result.user, {
+          displayName: name,
+        })
+          .then(() => {
+            console.log("Name updated:", name);
+          })
+          .catch((err) => {
+            console.error("Profile update failed:", err);
+          });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
@@ -96,10 +127,7 @@ const Register = () => {
                 <label htmlFor="password" className="text-sm">
                   Password
                 </label>
-                <a
-                  href="#"
-                  className="text-xs hover:underline text-gray-600"
-                >
+                <a href="#" className="text-xs hover:underline text-gray-600">
                   Forgot password?
                 </a>
               </div>
@@ -125,7 +153,10 @@ const Register = () => {
 
       {/* Lottie Animation */}
       <div className="w-full md:w-1/2 flex justify-center items-center mb-8 md:mb-0">
-        <Lottie animationData={registerLottieData} className="max-w-xs md:max-w-md" />
+        <Lottie
+          animationData={registerLottieData}
+          className="max-w-xs md:max-w-md"
+        />
       </div>
     </div>
   );
