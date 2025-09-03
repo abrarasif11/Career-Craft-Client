@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import headerPhoto from "./../../assets/Icon-8x.png";
+import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
-  const {user} = useContext;
+  const { user } = useContext(AuthContext);
   const links = (
     <>
       <li>
@@ -63,12 +64,18 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link className="mr-3 underline text-[#4167F0]" to='/register'>
-          Register
-        </Link>
-        <Link to='/signin'>
-          <a className="btn ">Sign In</a>
-        </Link>
+        {user ? (
+          <>
+            <button className="btn bg-[#4167F0] text-white">Log Out</button>
+          </>
+        ) : (
+          <>
+            <Link className="mr-3 underline text-[#4167F0]" to="/register">
+              Register
+            </Link>
+            <Link to="/signin"></Link>
+          </>
+        )}
       </div>
     </div>
   );
