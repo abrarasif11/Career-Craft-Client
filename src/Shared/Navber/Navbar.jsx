@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import headerPhoto from './../../assets/Icon-8x.png'
+import headerPhoto from "./../../assets/Icon-8x.png";
 
 const Navbar = () => {
   const links = (
@@ -56,13 +56,18 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <a className="btn btn-ghost text-xl">Career Craft</a>
+        <a className="btn btn-ghost text-xl text-[#4167F0]">Career Craft</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Register</a>
+        <Link to='/register'>
+          <a className="btn mr-3">Register</a>
+        </Link>
+        <Link to='/signin'>
+          <a className="btn">Sign In</a>
+        </Link>
       </div>
     </div>
   );
