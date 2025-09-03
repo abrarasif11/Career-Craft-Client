@@ -1,36 +1,45 @@
 import Lottie from "lottie-react";
 import React from "react";
 import registerLottieData from "../../assets/Lottie/register.json.json";
+
 const Register = () => {
-    const handleRegister = e => {
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(name, email, password);
-    }
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password);
+  };
+
   return (
-    <div className="flex">
-      <div className="w-full max-w-md mt-10 p-4 rounded-md shadow sm:p-8 bg-gray-50 text-gray-800">
-        <h2 className="mb-3 text-3xl font-semibold text-center">
-          Login to your account
+    <div className="flex flex-col-reverse md:flex-row items-center mt-10 mb-10 justify-center min-h-screen px-4 py-10 bg-gray-100">
+      {/* Form Section */}
+      <div className="w-full max-w-md p-6 rounded-lg shadow-lg bg-white text-gray-800">
+        <p className="text-center font-medium">Register</p>
+        <h2 className="mb-3 text-2xl md:text-3xl font-semibold text-center">
+          Start for free Today
         </h2>
+        <p className="text-center mb-2 text-sm md:text-base">
+          Access to all features. No credit card required.
+        </p>
         <p className="text-sm text-center text-gray-600">
           Already have an account?
           <a
             href="#"
             rel="noopener noreferrer"
-            className="focus:underline hover:underline"
+            className="focus:underline hover:underline text-violet-600"
           >
-             Sign in
+            <span> Sign In</span>
           </a>
         </p>
-        <div className="my-6 space-y-4">
+
+        {/* Google Button */}
+        <div className="my-6">
           <button
             aria-label="Login with Google"
             type="button"
-            className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 border-gray-600 focus:ring-violet-600"
+            className="flex items-center justify-center w-full p-3 md:p-4 space-x-3 border rounded-md focus:ring-2 focus:ring-offset-1 border-gray-300 focus:ring-violet-600"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,25 +51,32 @@ const Register = () => {
             <p>Login with Google</p>
           </button>
         </div>
+
+        {/* Divider */}
         <div className="flex items-center w-full my-4">
-          <hr className="w-full text-gray-600" />
-          <p className="px-3 text-gray-600">OR</p>
-          <hr className="w-full text-gray-600" />
+          <hr className="w-full border-gray-300" />
+          <p className="px-3 text-gray-600 text-sm">OR</p>
+          <hr className="w-full border-gray-300" />
         </div>
-        <form onSubmit={handleRegister} noValidate="" action="" className="space-y-8">
+
+        {/* Form */}
+        <form onSubmit={handleRegister} className="space-y-6">
           <div className="space-y-4">
+            {/* Full Name */}
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm">
+              <label htmlFor="name" className="block text-sm">
                 Full Name
               </label>
               <input
-                type="email"
+                type="text"
                 name="name"
-                id="email"
+                id="name"
                 placeholder="John Kabir"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600"
               />
             </div>
+
+            {/* Email */}
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm">
                 Email address
@@ -73,13 +89,14 @@ const Register = () => {
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600"
               />
             </div>
+
+            {/* Password */}
             <div className="space-y-2">
               <div className="flex justify-between">
                 <label htmlFor="password" className="text-sm">
                   Password
                 </label>
                 <a
-                  rel="noopener noreferrer"
                   href="#"
                   className="text-xs hover:underline text-gray-600"
                 >
@@ -95,16 +112,20 @@ const Register = () => {
               />
             </div>
           </div>
+
+          {/* Submit Button */}
           <button
-            type="button"
-            className="w-full px-8 py-3 font-semibold rounded-md bg-violet-600 text-gray-50"
+            type="submit"
+            className="w-full px-6 py-3 font-semibold rounded-md bg-violet-600 text-white hover:bg-violet-700 transition"
           >
             Register
           </button>
         </form>
       </div>
-      <div className="">
-        <Lottie animationData={registerLottieData}></Lottie>
+
+      {/* Lottie Animation */}
+      <div className="w-full md:w-1/2 flex justify-center items-center mb-8 md:mb-0">
+        <Lottie animationData={registerLottieData} className="max-w-xs md:max-w-md" />
       </div>
     </div>
   );
