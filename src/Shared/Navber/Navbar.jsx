@@ -12,7 +12,7 @@ const Navbar = () => {
       console.log("User Logout Successful")
     })
     .catch(err => {
-      console.log("Error Message")
+      console.log("Error Message",err)
     })
   }
 
