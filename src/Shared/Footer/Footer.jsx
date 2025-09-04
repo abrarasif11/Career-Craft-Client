@@ -25,7 +25,7 @@ const Footer = () => {
             </span>
           </a>
           {/* <p>Social</p> */}
-          <div className="flex justify-start mt-5 ml-3  space-x-3">
+          <div className="flex justify-start mt-5 ml-4  space-x-3">
             <a
               rel="noopener noreferrer"
               href="#"
@@ -185,7 +185,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="py-6 text-sm text-center text-gray-600">
-        © 2025 Company Co. All rights reserved.
+      Copyright © 2022. Career Craft all right reserved
       </div>
     </footer>
   );
