@@ -16,7 +16,7 @@ const Banner = () => {
           <motion.img
             src={teamPic2}
             animate={{ x: [100, 150, 100]}}
-            transition={{duration: 7, repeat: Infinity}}
+            transition={{duration: 7, delay:4, repeat: Infinity}}
             className="max-w-64 rounded-t-[40px] rounded-br-[40px] border-l-7 border-b-7 border-[#4167F0] shadow-2xl"
           />
         </div>
