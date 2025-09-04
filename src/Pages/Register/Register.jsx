@@ -5,7 +5,18 @@ import AuthContext from "../../Context/AuthContext/AuthContext";
 import { updateProfile } from "firebase/auth";
 import { Link } from "react-router-dom";
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, signInWithGoogle } = useContext(AuthContext);
+
+ const handleGoogleSignIn = () => {
+  signInWithGoogle()
+  .then(res => {
+    console.log(res.user)
+  })
+  .catch(err => {
+    console.log(err.message)
+  })
+ }
+
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -69,6 +80,7 @@ const Register = () => {
         {/* Google Button */}
         <div className="my-6">
           <button
+          onClick={handleGoogleSignIn}
             aria-label="Login with Google"
             type="button"
             className="flex items-center justify-center w-full p-3 md:p-4 space-x-3 border rounded-md focus:ring-2 focus:ring-offset-1 border-gray-300 focus:ring-violet-600"
