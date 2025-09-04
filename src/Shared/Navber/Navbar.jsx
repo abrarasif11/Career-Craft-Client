@@ -4,7 +4,18 @@ import headerPhoto from "./../../assets/Icon-8x.png";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user,signOutUser } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    signOutUser()
+    .then(() => {
+      console.log("User Logout Successful")
+    })
+    .catch(err => {
+      console.log("Error Message")
+    })
+  }
+
   const links = (
     <>
       <li>
@@ -66,14 +77,16 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <button className="btn bg-[#4167F0] text-white">Log Out</button>
+            <button onClick={handleSignOut} className="btn bg-[#4167F0] text-white">Log Out</button>
           </>
         ) : (
           <>
             <Link className="mr-3 underline text-[#4167F0]" to="/register">
               Register
             </Link>
-            <Link to="/signin"></Link>
+            <Link to="/signin">
+            <button  className="btn bg-[#4167F0] text-white">Log In</button>
+            </Link>
           </>
         )}
       </div>
