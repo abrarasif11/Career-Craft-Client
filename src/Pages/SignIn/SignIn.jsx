@@ -4,24 +4,33 @@ import signInLottieData from "../../assets/Lottie/login.json";
 import { Link } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 const SignIn = () => {
-    const { signInUser } = useContext(AuthContext)
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
 
-    const handleSignIn = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log( email, password );
-        
-        signInUser(email, password)
-        .then(result => {
-            console.log('Sign In', result.user)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-        
-      };
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    signInUser(email, password)
+      .then((result) => {
+        console.log("Sign In", result.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="flex flex-col-reverse md:flex-row items-center mt-10 mb-10 justify-center min-h-screen px-4 py-10 bg-gray-100">
       {/* Form Section */}
@@ -36,7 +45,7 @@ const SignIn = () => {
         <p className="text-sm text-center text-gray-600">
           Already have an account?
           <Link
-            to='/register'
+            to="/register"
             rel="noopener noreferrer"
             className="focus:underline hover:underline text-violet-600"
           >
@@ -47,6 +56,7 @@ const SignIn = () => {
         {/* Google Button */}
         <div className="my-6">
           <button
+            onClick={handleGoogleSignIn}
             aria-label="Login with Google"
             type="button"
             className="flex items-center justify-center w-full p-3 md:p-4 space-x-3 border rounded-md focus:ring-2 focus:ring-offset-1 border-gray-300 focus:ring-violet-600"
