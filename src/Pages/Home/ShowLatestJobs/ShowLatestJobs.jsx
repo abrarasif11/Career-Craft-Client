@@ -1,8 +1,9 @@
 import React from "react";
 import { GrLocation } from "react-icons/gr";
+import { IoBriefcaseOutline } from "react-icons/io5";
 
 const ShowLatestJobs = ({ job }) => {
-  const { jobType, location, title, company_logo, company } = job;
+  const { jobType, requirements,location,salaryRange, title, company_logo, company, description } = job;
   return (
     <div className="card bg-base-100 m-10 shadow-sm">
       <div className="flex gap-2">
@@ -11,18 +12,29 @@ const ShowLatestJobs = ({ job }) => {
         </figure>
         <div>
           <h4 className="text-2xl font-semibold">{company}</h4>
-          
-          <p><GrLocation /> {location}</p>
+
+          <p className="flex gap-2 items-center">
+            <GrLocation /> {location}
+          </p>
         </div>
       </div>
       <div className="card-body">
-        <h2 className="card-title">Card Title</h2>
-        <p>
-          A card component has a figure, a body part, and inside body there are
-          title and actions parts
+        <h2 className="card-title">{title}</h2>
+        <p className="flex gap-2 items-center">
+          <IoBriefcaseOutline />
+          {jobType}
         </p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+            <h1>{description}</h1>
+        <div className="flex gap-2 flex-wrap">
+            {
+                requirements.map(skill => <p className="p-2 hover:text-[#4167F0] rounded-md text-center bg-[#EFF3FC]">
+                    {skill}
+                </p>)
+            }
+        </div>
+        <div className="mt-5 card-actions justify-end">
+            <p className="text-xl font-semibold">Salary: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}</p>
+          <button className="btn bg-[#4167F0] text-white border-none btn-primary">Apply Now</button>
         </div>
       </div>
     </div>
