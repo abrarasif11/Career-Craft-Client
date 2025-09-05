@@ -1,9 +1,20 @@
 import React from "react";
 import { GrLocation } from "react-icons/gr";
 import { IoBriefcaseOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const ShowLatestJobs = ({ job }) => {
-  const { jobType, requirements,location,salaryRange, title, company_logo, company, description } = job;
+  const {
+    jobType,
+    requirements,
+    location,
+    salaryRange,
+    title,
+    company_logo,
+    company,
+    description,
+    _id,
+  } = job;
   return (
     <div className="card bg-base-100 m-10 shadow-sm">
       <div className="flex gap-2">
@@ -24,17 +35,23 @@ const ShowLatestJobs = ({ job }) => {
           <IoBriefcaseOutline />
           {jobType}
         </p>
-            <h1>{description}</h1>
+        <h1>{description}</h1>
         <div className="flex gap-2 flex-wrap">
-            {
-                requirements.map(skill => <p className="p-2 hover:text-[#4167F0] rounded-md text-center bg-[#EFF3FC]">
-                    {skill}
-                </p>)
-            }
+          {requirements.map((skill) => (
+            <p className="p-2 hover:text-[#4167F0] rounded-md text-center bg-[#EFF3FC]">
+              {skill}
+            </p>
+          ))}
         </div>
         <div className="mt-5 card-actions justify-end">
-            <p className="text-xl font-semibold">Salary: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}</p>
-          <button className="btn bg-[#4167F0] text-white border-none btn-primary">Apply Now</button>
+          <p className="text-xl font-semibold">
+            Salary: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}
+          </p>
+          <Link to={`/jobs/${_id}`}>
+            <button className="btn bg-[#4167F0] text-white border-none btn-primary">
+              Apply Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>
