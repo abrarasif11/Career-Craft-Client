@@ -1,4 +1,5 @@
 import React from "react";
+import { GrLocation } from "react-icons/gr";
 
 const ShowLatestJobs = ({ job }) => {
   const { jobType, location, title, company_logo, company } = job;
@@ -10,7 +11,8 @@ const ShowLatestJobs = ({ job }) => {
         </figure>
         <div>
           <h4 className="text-2xl font-semibold">{company}</h4>
-          <p>{location}</p>
+          
+          <p><GrLocation /> {location}</p>
         </div>
       </div>
       <div className="card-body">
