@@ -22,16 +22,16 @@ const MyApplication = () => {
 
   return (
     <div>
-      <h2 className="text-3xl">APP : {jobs.length}</h2>
+      <h2 className="text-3xl font-semibold text-center mt-10 mb-10">Your Jobs Application</h2>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table mt-10 mb-10">
           {/* head */}
           <thead>
             <tr>
               <th></th>
               <th>Name</th>
               <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Users Email</th>
               <th></th>
             </tr>
           </thead>
@@ -51,22 +51,18 @@ const MyApplication = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">Hart Hagerty</div>
-                      <div className="text-sm opacity-50">United States</div>
+                      <div className="font-bold">{job.company}</div>
+                      <div className="text-sm opacity-50">{job.location}</div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  Zemlak, Daniel and Leannon
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
+                 {job.title}
                 </td>
-                <td>Purple</td>
-                <th>
+                <td> {job.applicant_email}</td>
+                {/* <th>
                   <button className="btn btn-ghost btn-xs">details</button>
-                </th>
+                </th> */}
               </tr>
             ))}
           </tbody>
