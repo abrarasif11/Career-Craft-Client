@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { MdDelete } from "react-icons/md";
 
 const MyApplication = () => {
   const auth = useAuth();
@@ -22,7 +23,9 @@ const MyApplication = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold text-center mt-10 mb-10">Your Jobs Application</h2>
+      <h2 className="text-3xl font-semibold text-center mt-10 mb-10">
+        Your Jobs Application
+      </h2>
       <div className="overflow-x-auto">
         <table className="table mt-10 mb-10">
           {/* head */}
@@ -31,7 +34,7 @@ const MyApplication = () => {
               <th></th>
               <th>Name</th>
               <th>Job</th>
-              <th>Users Email</th>
+              <th>Delete User</th>
               <th></th>
             </tr>
           </thead>
@@ -56,13 +59,13 @@ const MyApplication = () => {
                     </div>
                   </div>
                 </td>
-                <td>
-                 {job.title}
-                </td>
+                <td>{job.title}</td>
                 <td> {job.applicant_email}</td>
-                {/* <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th> */}
+                <th>
+                  <button className="flex items-center justify-center text-2xl  w-12 h-12 rounded-lg bg-[#4167F0] text-white ">
+                    <MdDelete />
+                  </button>
+                </th>
               </tr>
             ))}
           </tbody>
