@@ -1,23 +1,53 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const JobApply = () => {
-  const id = useParams()
-  console.log(id)
+  const id = useParams();
+  const { user } = useAuth();
+  // console.log(id, user)
 
-  const handleJobApply = e => {
+  const handleJobApply = (e) => {
     e.preventDefault();
     const form = e.target;
     const contact = form.contact.value;
     const linkedin = form.linkedin.value;
     const github = form.github.value;
     // const resume = form.resume.value;
-    console.log(contact, linkedin, github)
-  }
+    // console.log(contact, linkedin, github)
+
+    const jobApply = {
+      job_id: id,
+      applicant_email: user.email,
+      contact,
+      linkedin,
+      github,
+    };
+    fetch("http://localhost:7000/job-application", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(jobApply),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your Job Apply Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
   return (
     <section className="p-6 text-gray-800">
       <form
-      onSubmit={handleJobApply}
+        onSubmit={handleJobApply}
         noValidate=""
         className="container w-full mt-10 mb-10 max-w-xl p-8 mx-auto space-y-6 rounded-md shadow bg-gray-50"
       >
@@ -100,7 +130,7 @@ const JobApply = () => {
         <div>
           <fieldset className="fieldset bg-base-100  border-base-300 rounded-box w-full border p-4">
             <label className="label">
-              <input  type="checkbox" defaultChecked className="checkbox" />
+              <input type="checkbox" defaultChecked className="checkbox" />
               Agree our terms and policy
             </label>
           </fieldset>
