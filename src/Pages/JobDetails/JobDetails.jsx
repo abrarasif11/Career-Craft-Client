@@ -1,8 +1,8 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const JobDetails = () => {
-  const { title, company, responsibilities, status } = useLoaderData();
+  const { title, _id, company, responsibilities, status } = useLoaderData();
 
   return (
     <div className="max-w-2xl card bg-base-100 shadow-sm px-6 py-16 mx-auto space-y-12">
@@ -40,18 +40,18 @@ const JobDetails = () => {
           <h4 className="text-lg font-semibold">Job Responsibilities</h4>
           <ul className="ml-4 space-y-1 list-disc">
             {responsibilities.map((skill) => (
-              <li className="p-2 hover:text-[#4167F0]">
-                {skill}
-              </li>
+              <li className="p-2 hover:text-[#4167F0]">{skill}</li>
             ))}
           </ul>
         </div>
-        <button
-          type="button"
-          className="flex items-center mt-5 btn justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-[#4167F0] text-gray-50"
-        >
-          Apply Here
-        </button>
+        <Link to={`/jobApply/${_id}`}>
+          <button
+            type="button"
+            className="flex items-center mt-5 btn justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-[#4167F0] text-gray-50"
+          >
+            Apply Here
+          </button>
+        </Link>
       </div>
     </div>
   );
