@@ -7,7 +7,9 @@ const CreateJob = () => {
         noValidate=""
         className="container w-full max-w-xl p-8 mx-auto space-y-6 rounded-md shadow bg-gray-50"
       >
-        <h2 className="w-full text-3xl text-center font-bold leading-tight">Create a job</h2>
+        <h2 className="w-full text-3xl text-center font-bold leading-tight">
+          Create a job
+        </h2>
         {/* Job Title */}
         <div>
           <label htmlFor="name" className="block mb-1 ml-1">
@@ -42,7 +44,7 @@ const CreateJob = () => {
             id="message"
             type="text"
             placeholder="Message..."
-            className="block w-full p-2 rounded autoexpand focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
+            className="block w-full p-2 rounded  focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           ></textarea>
         </div>
         <div>
