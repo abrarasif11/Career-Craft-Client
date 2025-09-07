@@ -3,6 +3,8 @@ import React from "react";
 const CreateJob = () => {
   const handleCreateJob = e => {
     e.prevent.Default();
+    const formData = new FormData(e.target)
+    console.log(formData)
   }
   return (
     <section className="p-6 text-gray-800">
