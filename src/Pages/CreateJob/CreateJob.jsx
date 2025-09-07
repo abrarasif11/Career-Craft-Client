@@ -46,9 +46,37 @@ const CreateJob = () => {
           <input
             id="email"
             type="text"
-            placeholder="Your email"
+            placeholder="Job Location"
             required=""
             name="location"
+            className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
+          />
+        </div>
+        {/* HR Name */}
+        <div>
+          <label htmlFor="email" className="block mb-1 ml-1">
+          HR Name
+          </label>
+          <input
+            id="email"
+            type="text"
+            placeholder="HR Name"
+            required=""
+            name="hr_name"
+            className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
+          />
+        </div>
+        {/* HR Email */}
+        <div>
+          <label htmlFor="email" className="block mb-1 ml-1">
+          HR Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="HR Email"
+            required=""
+            name="hr_email"
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           />
         </div>
