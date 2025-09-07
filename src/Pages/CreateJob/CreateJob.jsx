@@ -2,7 +2,7 @@ import React from "react";
 
 const CreateJob = () => {
   const handleCreateJob = e => {
-    e.prevent.Default();
+    e.preventDefault();
     const formData = new FormData(e.target)
     console.log(formData)
   }
