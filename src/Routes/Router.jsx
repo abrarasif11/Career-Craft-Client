@@ -8,11 +8,13 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import JobApply from "../Pages/JobApply/JobApply";
 import MyApplication from "../Pages/MyApplication/MyApplication";
 import CreateJob from "../Pages/CreateJob/CreateJob";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
