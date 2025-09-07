@@ -1,9 +1,13 @@
 import React from "react";
 
 const CreateJob = () => {
+  const handleCreateJob = e => {
+    e.prevent.Default();
+  }
   return (
     <section className="p-6 text-gray-800">
-      <form
+      <form 
+      onSubmit={handleCreateJob}
         noValidate=""
         className="container w-full max-w-xl p-8 mx-auto space-y-6 rounded-md shadow bg-gray-50"
       >
