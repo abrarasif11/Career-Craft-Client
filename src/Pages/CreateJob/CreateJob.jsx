@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
 const CreateJob = () => {
-  const { user } = useAuth
+  const { user } = useAuth();
   const handleCreateJob = (e) => {
     e.preventDefault();
 
@@ -106,6 +106,8 @@ const CreateJob = () => {
             placeholder="HR Name"
             required
             name="hr_name"
+            defaultValue={user?.displayName}
+            disabled
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           />
         </div>
@@ -121,6 +123,7 @@ const CreateJob = () => {
             placeholder="HR Email"
             required
             defaultValue={user?.email}
+            disabled
             name="hr_email"
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           />
