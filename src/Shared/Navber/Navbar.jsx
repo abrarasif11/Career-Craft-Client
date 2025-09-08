@@ -4,17 +4,17 @@ import headerPhoto from "./../../assets/Icon-8x.png";
 import AuthContext from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
-  const { user,signOutUser } = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
 
   const handleSignOut = () => {
     signOutUser()
-    .then(() => {
-      console.log("User Logout Successful")
-    })
-    .catch(err => {
-      console.log("Error Message",err)
-    })
-  }
+      .then(() => {
+        console.log("User Logout Successful");
+      })
+      .catch((err) => {
+        console.log("Error Message", err);
+      });
+  };
 
   const links = (
     <>
@@ -22,13 +22,13 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/addCoffee">Add Coffee</NavLink>
-      </li>
-      <li>
         <NavLink to="/myApplication">My Application</NavLink>
       </li>
       <li>
         <NavLink to="/createJob">Create Job</NavLink>
+      </li>
+      <li>
+        <NavLink to="/myPostedJobs">My Posted Jobs</NavLink>
       </li>
     </>
   );
@@ -69,7 +69,9 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <Link to='/' className="btn btn-ghost text-xl text-[#4167F0]">Career Craft</Link>
+        <Link to="/" className="btn btn-ghost text-xl text-[#4167F0]">
+          Career Craft
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -77,7 +79,12 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <button onClick={handleSignOut} className="btn bg-[#4167F0] text-white">Log Out</button>
+            <button
+              onClick={handleSignOut}
+              className="btn bg-[#4167F0] text-white"
+            >
+              Log Out
+            </button>
           </>
         ) : (
           <>
@@ -85,7 +92,7 @@ const Navbar = () => {
               Register
             </Link>
             <Link to="/signin">
-            <button  className="btn bg-[#4167F0] text-white">Log In</button>
+              <button className="btn bg-[#4167F0] text-white">Log In</button>
             </Link>
           </>
         )}
