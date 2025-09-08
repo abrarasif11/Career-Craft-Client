@@ -1,44 +1,51 @@
 import React from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const CreateJob = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
+
   const handleCreateJob = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
     console.log("Raw form data:", data);
+
     const { min, max, currency, ...newJob } = data;
     newJob.salaryRange = { min, max, currency };
-    newJob.requirement = newJob.requirement.split('\n');
-    newJob.responsibility = newJob.responsibility.split('\n');
-    console.log("New Job object:", newJob);
-    // e.target.reset();
-     
-   fetch('http://localhost:7000/jobs', {
-    method: "POST",
-    headers: {
-      'content-type' : 'application/json'
-    },
-    body: JSON.stringify(newJob)
-   })
-   .then(res => res.json())
-   .then(data =>{
-    if (data.insertedId) {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Job Created Successfully",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-              
-            }
-   })
-  };
+    newJob.requirement = newJob.requirement.split("\n");
+    newJob.responsibility = newJob.responsibility.split("\n");
 
+    // ✅ Always attach hr_email & hr_name from user
+    newJob.hr_email = user?.email || data.hr_email;
+    newJob.hr_name = user?.displayName || data.hr_name;
+
+    console.log("Final New Job object:", newJob);
+
+    fetch("http://localhost:7000/jobs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Job Created Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/myPostedJobs");
+        }
+      });
+  };
   return (
     <section className="p-6 text-gray-800">
       <form
@@ -107,7 +114,7 @@ const CreateJob = () => {
             required
             name="hr_name"
             defaultValue={user?.displayName}
-            disabled
+            readOnly
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           />
         </div>
@@ -123,14 +130,14 @@ const CreateJob = () => {
             placeholder="HR Email"
             required
             defaultValue={user?.email}
-            disabled
             name="hr_email"
+            readOnly
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           />
         </div>
 
-         {/* deadline */}
-         <div>
+        {/* deadline */}
+        <div>
           <label htmlFor="applicationDeadline" className="block mb-1 ml-1">
             Deadline
           </label>
@@ -169,9 +176,11 @@ const CreateJob = () => {
             className="w-full select select-ghost"
             name="job_type"
             required
-            defaultValue="Select a Job Type"
+            defaultValue=""
           >
-            <option value="" disabled>Select a Job Type</option>
+            <option value="" disabled>
+              Select a Job Type
+            </option>
             <option>Full-Time</option>
             <option>Part-Time</option>
             <option>Internship</option>
@@ -189,9 +198,11 @@ const CreateJob = () => {
             className="w-full select select-ghost"
             name="field"
             required
-             defaultValue="Select Job Field"
+            defaultValue=""
           >
-            <option disabled value="">Select Job Field</option>
+            <option value="" disabled>
+              Select Job Field
+            </option>
             <option>Engineering</option>
             <option>Marketing</option>
             <option>Finance</option>
@@ -220,9 +231,11 @@ const CreateJob = () => {
             name="currency"
             className="w-full select select-ghost"
             required
-             defaultValue="Select Currency"
+            defaultValue=""
           >
-            <option disabled value="">Select Currency</option>
+            <option value="" disabled>
+              Select Currency
+            </option>
             <option>USD</option>
             <option>EUR</option>
             <option>BDT</option>
