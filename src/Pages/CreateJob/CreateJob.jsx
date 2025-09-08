@@ -19,7 +19,6 @@ const CreateJob = () => {
     newJob.requirement = newJob.requirement.split("\n");
     newJob.responsibility = newJob.responsibility.split("\n");
 
-    // ✅ Always attach hr_email & hr_name from user
     newJob.hr_email = user?.email || data.hr_email;
     newJob.hr_name = user?.displayName || data.hr_name;
 

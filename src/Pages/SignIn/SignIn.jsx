@@ -3,11 +3,12 @@ import Lottie from "lottie-react";
 import signInLottieData from "../../assets/Lottie/login.json";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext/AuthContext";
+import axios from "axios";
 const SignIn = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
+  // const location = useLocation();
+  // const navigate = useNavigate();
+  // const from = location.state?.from?.pathname || "/";
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((res) => {
@@ -27,8 +28,13 @@ const SignIn = () => {
 
     signInUser(email, password)
       .then((result) => {
-        console.log("Sign In", result.user);
-        navigate(from, { replace: true });
+        console.log("Sign In", result.user.email);
+        const user = { email: email }
+        axios.post('http://localhost:7000/jwt', user)
+        .then(data =>{
+          console.log(data)
+        }) 
+        // navigate(from, { replace: true });
       })
       .catch((err) => {
         console.log(err);
