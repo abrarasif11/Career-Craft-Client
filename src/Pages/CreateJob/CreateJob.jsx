@@ -7,17 +7,24 @@ const CreateJob = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
     console.log("Raw form data:", data);
-
-    // ✅ include max in destructuring
     const { min, max, currency, ...newJob } = data;
-
-    // ✅ attach salaryRange as an object
     newJob.salaryRange = { min, max, currency };
-
+    newJob.requirement = newJob.requirement.split('\n');
+    newJob.responsibility = newJob.responsibility.split('\n');
     console.log("New Job object:", newJob);
-
-    // (Optional) Reset form after submit
-    e.target.reset();
+    // e.target.reset();
+     
+   fetch('http://localhost:7000/jobs', {
+    method: "POST",
+    headers: {
+      'content-type' : 'application/json'
+    },
+    body: JSON.stringify(newJob)
+   })
+   .then(res => res.json())
+   .then(data =>{
+    console.log(data)
+   })
   };
 
   return (
