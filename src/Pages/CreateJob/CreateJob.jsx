@@ -1,6 +1,9 @@
 import React from "react";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const CreateJob = () => {
+  const { user } = useAuth
   const handleCreateJob = (e) => {
     e.preventDefault();
 
@@ -23,7 +26,16 @@ const CreateJob = () => {
    })
    .then(res => res.json())
    .then(data =>{
-    console.log(data)
+    if (data.insertedId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Job Created Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              
+            }
    })
   };
 
@@ -108,6 +120,7 @@ const CreateJob = () => {
             type="email"
             placeholder="HR Email"
             required
+            defaultValue={user?.email}
             name="hr_email"
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           />
@@ -138,8 +151,9 @@ const CreateJob = () => {
             className="w-full select select-ghost"
             name="job_type"
             required
+            defaultValue="Select a Job Type"
           >
-            <option value="">Select a Job Type</option>
+            <option value="" disabled>Select a Job Type</option>
             <option>Full-Time</option>
             <option>Part-Time</option>
             <option>Internship</option>
@@ -157,8 +171,9 @@ const CreateJob = () => {
             className="w-full select select-ghost"
             name="field"
             required
+             defaultValue="Select Job Field"
           >
-            <option value="">Select Job Field</option>
+            <option disabled value="">Select Job Field</option>
             <option>Engineering</option>
             <option>Marketing</option>
             <option>Finance</option>
@@ -187,8 +202,9 @@ const CreateJob = () => {
             name="currency"
             className="w-full select select-ghost"
             required
+             defaultValue="Select Currency"
           >
-            <option value="">Select Currency</option>
+            <option disabled value="">Select Currency</option>
             <option>USD</option>
             <option>EUR</option>
             <option>BDT</option>
