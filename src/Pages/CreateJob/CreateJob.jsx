@@ -129,6 +129,21 @@ const CreateJob = () => {
           />
         </div>
 
+         {/* deadline */}
+         <div>
+          <label htmlFor="applicationDeadline" className="block mb-1 ml-1">
+            Deadline
+          </label>
+          <input
+            id="applicationDeadline"
+            type="date"
+            placeholder="Deadline"
+            required
+            name="applicationDeadline"
+            className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
+          />
+        </div>
+
         {/* Logo */}
         <div>
           <label htmlFor="logo" className="block mb-1 ml-1">
