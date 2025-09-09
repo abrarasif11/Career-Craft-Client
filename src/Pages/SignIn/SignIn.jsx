@@ -31,8 +31,8 @@ const SignIn = () => {
         console.log("Sign In", result.user.email);
         const user = { email: email }
         axios.post('http://localhost:7000/jwt', user)
-        .then(data =>{
-          console.log(data)
+        .then(res =>{
+          console.log(res.data)
         }) 
         // navigate(from, { replace: true });
       })
