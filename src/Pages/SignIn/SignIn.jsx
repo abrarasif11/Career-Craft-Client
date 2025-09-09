@@ -29,11 +29,12 @@ const SignIn = () => {
     signInUser(email, password)
       .then((result) => {
         console.log("Sign In", result.user.email);
-        const user = { email: email }
-        axios.post('http://localhost:7000/jwt', user)
-        .then(res =>{
-          console.log(res.data)
-        }) 
+        const user = { email: email };
+        axios
+          .post("http://localhost:7000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+          });
         // navigate(from, { replace: true });
       })
       .catch((err) => {
