@@ -11,7 +11,9 @@ const LatestJobs = () => {
   return (
     <div>
       <h1 className="text-center text-3xl font-bold mt-10">Jobs of the day</h1>
-      <p className="text-center mt-2 mb-2">Search and connect with the right candidates faster.</p>
+      <p className="text-center mt-2 mb-2">
+        Search and connect with the right candidates faster.
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto">
         {jobs.map((job) => (
           <ShowLatestJobs job={job} key={job._id}></ShowLatestJobs>

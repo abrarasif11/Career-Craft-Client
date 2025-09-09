@@ -46,7 +46,11 @@ const MyApplication = () => {
           })
           .catch((err) => {
             console.error("Delete fetch error:", err);
-            Swal.fire("Error", "Failed to delete. Check console logs.", "error");
+            Swal.fire(
+              "Error",
+              "Failed to delete. Check console logs.",
+              "error"
+            );
           });
       }
     });
@@ -59,8 +63,11 @@ const MyApplication = () => {
   //     .then((data) => setJobs(data))
   //     .catch((err) => console.error("Fetch error:", err));
   // }, [user?.email]);
-  axios.get(`http://localhost:7000/job-application?email=${user.email}`, { withCredentials: true })
-  .then(res => console.log(setJobs(res.data)))
+  axios
+    .get(`http://localhost:7000/job-application?email=${user.email}`, {
+      withCredentials: true,
+    })
+    .then((res) => console.log(setJobs(res.data)));
 
   return (
     <div>

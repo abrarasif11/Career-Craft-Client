@@ -24,7 +24,7 @@ const MyPostedJobs = () => {
               </tr>
             </thead>
             <tbody>
-              {jobs.map((job , index) => (
+              {jobs.map((job, index) => (
                 <tr job={job} key={job._id} className="hover:bg-base-300">
                   <th>{index + 1}</th>
                   <td>{job.title}</td>
