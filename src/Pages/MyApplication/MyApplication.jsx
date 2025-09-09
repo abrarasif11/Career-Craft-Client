@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const MyApplication = () => {
   const auth = useAuth();
@@ -50,14 +51,16 @@ const MyApplication = () => {
       }
     });
 
-  useEffect(() => {
-    if (!user?.email) return;
+  // useEffect(() => {
+  //   if (!user?.email) return;
 
-    fetch(`http://localhost:7000/job-application?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setJobs(data))
-      .catch((err) => console.error("Fetch error:", err));
-  }, [user?.email]);
+  //   fetch(`http://localhost:7000/job-application?email=${user.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setJobs(data))
+  //     .catch((err) => console.error("Fetch error:", err));
+  // }, [user?.email]);
+  axios.get(`http://localhost:7000/job-application?email=${user.email}`, { withCredentials: true })
+  .then(res => console.log(setJobs(res.data)))
 
   return (
     <div>
