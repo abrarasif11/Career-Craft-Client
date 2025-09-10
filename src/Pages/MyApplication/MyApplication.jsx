@@ -55,23 +55,23 @@ const MyApplication = () => {
       }
     });
 
-    useEffect(() => {
-      if (!user?.email) return;
-    
-      axios
-        .get(`http://localhost:7000/job-application?email=${user.email}`, {
-          withCredentials: true,
-        })
-        .then((res) => setJobs(res.data))
-        .catch((err) => console.error("Axios error:", err));
-    }, [user?.email]);
+  useEffect(() => {
+    if (!user?.email) return;
+
+    axios
+      .get(`http://localhost:7000/job-application?email=${user.email}`, {
+        withCredentials: true,
+      })
+      .then((res) => setJobs(res.data))
+      .catch((err) => console.error("Axios error:", err));
+  }, [user?.email]);
 
   //   fetch(`http://localhost:7000/job-application?email=${user.email}`)
   //     .then((res) => res.json())
   //     .then((data) => setJobs(data))
   //     .catch((err) => console.error("Fetch error:", err));
   //  [user?.email]);
-  
+
   return (
     <div>
       <h2 className="text-3xl font-semibold text-center mt-10 mb-10">

@@ -6,9 +6,9 @@ import AuthContext from "../../Context/AuthContext/AuthContext";
 import axios from "axios";
 const SignIn = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
-  // const location = useLocation();
-  // const navigate = useNavigate();
-  // const from = location.state?.from?.pathname || "/";
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((res) => {
@@ -35,7 +35,7 @@ const SignIn = () => {
           .then((res) => {
             console.log(res.data);
           });
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.log(err);
