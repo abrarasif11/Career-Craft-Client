@@ -14,7 +14,9 @@ const ShowLatestJobs = ({ job }) => {
     company,
     description,
     _id,
-  } = job || {}; 
+    hr_email,
+    hr_name,
+  } = job || {};
 
   return (
     <div className="card bg-base-100 m-10 shadow-sm">
@@ -36,10 +38,14 @@ const ShowLatestJobs = ({ job }) => {
           <IoBriefcaseOutline />
           {jobType}
         </p>
-
+        <p className="font-semibold text-xs">
+          HR Name : <span>{hr_name}</span>
+        </p>
+        <p className="font-semibold text-xs">
+          HR Email : <span>{hr_email}</span>
+        </p>
         <h1>{description}</h1>
 
-       
         <div className="flex gap-2 flex-wrap">
           {requirements?.length > 0 ? (
             requirements.map((skill, index) => (
@@ -56,7 +62,6 @@ const ShowLatestJobs = ({ job }) => {
         </div>
 
         <div className="mt-5 card-actions justify-end">
-          
           {salaryRange ? (
             <p className="text-xl font-semibold">
               Salary: {salaryRange.min} - {salaryRange.max}{" "}

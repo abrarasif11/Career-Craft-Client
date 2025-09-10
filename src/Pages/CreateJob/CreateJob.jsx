@@ -14,10 +14,10 @@ const CreateJob = () => {
     const data = Object.fromEntries(formData.entries());
     console.log("Raw form data:", data);
 
-    const { min, max, currency, ...newJob } = data;
+    const { min, max, currency, requirements, responsibility, ...newJob } = data;
     newJob.salaryRange = { min, max, currency };
-    newJob.requirement = newJob.requirement.split("\n");
-    newJob.responsibility = newJob.responsibility.split("\n");
+    newJob.requirement = requirements?.split("\n") || [];
+    newJob.responsibility = responsibility?.split("\n") || [];
 
     newJob.hr_email = user?.email || data.hr_email;
     newJob.hr_name = user?.displayName || data.hr_name;
@@ -81,7 +81,7 @@ const CreateJob = () => {
             type="text"
             placeholder="Company Name"
             required
-            name="company_name"
+            name="company"
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           />
         </div>
@@ -160,7 +160,7 @@ const CreateJob = () => {
             type="url"
             placeholder="Company Logo URL"
             required
-            name="logo"
+            name="company_logo"
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           />
         </div>
@@ -173,7 +173,7 @@ const CreateJob = () => {
           <select
             id="job_type"
             className="w-full select select-ghost"
-            name="job_type"
+            name="jobType"
             required
             defaultValue=""
           >
@@ -261,7 +261,7 @@ const CreateJob = () => {
           </label>
           <textarea
             id="requirement"
-            name="requirement"
+            name="requirements"
             placeholder="Write job requirements..."
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
           ></textarea>
