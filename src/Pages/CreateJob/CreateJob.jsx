@@ -14,8 +14,9 @@ const CreateJob = () => {
     const data = Object.fromEntries(formData.entries());
     console.log("Raw form data:", data);
 
-    const { min, max, currency, requirements, responsibility, ...newJob } = data;
-    newJob.salaryRange = { min, max, currency };
+    const { min, max, currency, requirements, responsibility, ...newJob } =
+      data;
+    newJob.salaryRange = { min: parseInt(min), max: parseInt(max), currency };
     newJob.requirement = requirements?.split("\n") || [];
     newJob.responsibility = responsibility?.split("\n") || [];
 
