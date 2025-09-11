@@ -3,9 +3,9 @@ import useJobs from "../../hooks/useJobs";
 import ShowLatestJobs from "../Home/ShowLatestJobs/ShowLatestJobs";
 
 const SeeAllJobs = () => {
-  const [sort, setSort] = useState(false); // false = default, true = sorted
-  const { jobs, loading } = useJobs(sort); // ✅ pass sort state into hook
-
+  const [sort, setSort] = useState(false); 
+  const [search, setSearch] = useState('')
+  const { jobs, loading } = useJobs(sort, search);
   if (loading) {
     return <p>Loading...</p>;
   }
