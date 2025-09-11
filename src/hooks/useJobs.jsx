@@ -1,18 +1,22 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const useJobs = () => {
-    const [jobs, setJobs] = useState([])
-    const [loading, setLoading] = useState(true)
+const useJobs = (sort) => {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-    axios.get('http://localhost:7000/jobs')
-    .then((res) => {
-        setLoading(false)
-        setJobs(res.data)
-    })
-    },[])
-  return { jobs, loading};
-}
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`http://localhost:7000/jobs?sort=${sort}`)
+      .then((res) => {
+        setJobs(res.data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [sort]);
 
-export default useJobs
+  return { jobs, loading };
+};
+
+export default useJobs;
