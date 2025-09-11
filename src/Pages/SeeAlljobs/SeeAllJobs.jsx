@@ -20,9 +20,9 @@ const SeeAllJobs = () => {
         >
           {sort ? "Sorted by salary (low → high)" : "Sort by salary"}
         </button>
-        <label className="input w-full max-w-2xl ml-[250px]">
+        <label className="input flex items-center w-full max-w-2xl mx-auto px-3 py-2 border rounded-lg shadow-sm">
           <svg
-            className="h-[1em] opacity-50"
+            className="h-5 w-5 opacity-50 mr-2"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -37,7 +37,12 @@ const SeeAllJobs = () => {
               <path d="m21 21-4.3-4.3"></path>
             </g>
           </svg>
-          <input className="" type="search" required placeholder="Search Jobs By Location " />
+          <input
+            className="w-full outline-none text-sm sm:text-base"
+            type="search"
+            required
+            placeholder="Search Jobs By Location"
+          />
         </label>
       </div>
 
