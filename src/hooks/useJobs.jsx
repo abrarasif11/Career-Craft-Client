@@ -8,13 +8,13 @@ const useJobs = (sort , search) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:7000/jobs?sort=${sort}?search=${search}`)
+      .get(`http://localhost:7000/jobs?sort=${sort}&search=${search}`)
       .then((res) => {
         setJobs(res.data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [sort]);
+  }, [sort, search]);
 
   return { jobs, loading };
 };

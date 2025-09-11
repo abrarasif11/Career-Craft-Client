@@ -3,8 +3,8 @@ import useJobs from "../../hooks/useJobs";
 import ShowLatestJobs from "../Home/ShowLatestJobs/ShowLatestJobs";
 
 const SeeAllJobs = () => {
-  const [sort, setSort] = useState(false); 
-  const [search, setSearch] = useState('')
+  const [sort, setSort] = useState(false);
+  const [search, setSearch] = useState("");
   const { jobs, loading } = useJobs(sort, search);
   if (loading) {
     return <p>Loading...</p>;
@@ -38,9 +38,9 @@ const SeeAllJobs = () => {
             </g>
           </svg>
           <input
+            onChange={(e) => setSearch(e.target.value)}
             className="w-full outline-none text-sm sm:text-base"
-            type="search"
-            required
+            type="text"
             placeholder="Search Jobs By Location"
           />
         </label>
