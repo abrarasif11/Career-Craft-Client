@@ -5,10 +5,13 @@ import ShowLatestJobs from "../Home/ShowLatestJobs/ShowLatestJobs";
 const SeeAllJobs = () => {
   const [sort, setSort] = useState(false);
   const [search, setSearch] = useState("");
-  const { jobs, loading } = useJobs(sort, search);
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const [minSalary, setMinSalary] = useState("");
+  const [maxSalary, setMaxSalary] = useState("");
+  const { jobs, loading } = useJobs(sort, search, minSalary, maxSalary);
+  console.log(jobs);
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <div>
@@ -30,14 +33,14 @@ const SeeAllJobs = () => {
           />
 
           <input
-            onChange={(e) => setSearch(e.target.value)}
+            onKeyUp={(e) => setMinSalary(e.target.value)}
             type="text"
             className="input w-full md:max-w-xs"
             placeholder="Min Salary"
           />
 
           <input
-            onChange={(e) => setSearch(e.target.value)}
+            onKeyUp={(e) => setMaxSalary(e.target.value)}
             type="text"
             className="input w-full md:max-w-xs"
             placeholder="Max Salary"
@@ -45,7 +48,7 @@ const SeeAllJobs = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto">
-        {jobs.map((job) => (
+        {jobs?.map((job) => (
           <ShowLatestJobs job={job} key={job._id} />
         ))}
       </div>

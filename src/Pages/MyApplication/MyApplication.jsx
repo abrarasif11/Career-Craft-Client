@@ -59,12 +59,13 @@ const MyApplication = () => {
     if (!user?.email) return;
 
     axios
-      .get(`http://localhost:7000/job-application?email=${user.email}`, {
+      .get(`http://localhost:7000/job-application?email=${user?.email}`, {
         withCredentials: true,
       })
       .then((res) => setJobs(res.data))
       .catch((err) => console.error("Axios error:", err));
   }, [user?.email]);
+  console.log(jobs)
 
   //   fetch(`http://localhost:7000/job-application?email=${user.email}`)
   //     .then((res) => res.json())
@@ -82,8 +83,8 @@ const MyApplication = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Name</th>
-              <th>Job</th>
+              <th>Email</th>
+              <th>User Contact</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -93,18 +94,10 @@ const MyApplication = () => {
                 <td></td>
                 <td>
                   <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img src={job.company_logo} alt={job.company} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">{job.company}</div>
-                      <div className="text-sm opacity-50">{job.location}</div>
-                    </div>
+                    <p>{job.applicant_email}</p>
                   </div>
                 </td>
-                <td>{job.title}</td>
+                <td>{job.contact}</td>
                 <td>
                   <button
                     onClick={() => handleUserDelete(job._id)}

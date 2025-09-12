@@ -261,7 +261,7 @@ const CreateJob = () => {
             Job Requirements
           </label>
           <textarea
-            id="requirement"
+            id="requirements"
             name="requirements"
             placeholder="Write job requirements..."
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"
